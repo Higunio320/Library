@@ -1,4 +1,4 @@
-package com.library.backend.entities.bookLoan;
+package com.library.backend.entities.bookloan;
 
 import com.library.backend.entities.user.User;
 import com.library.backend.entities.book.Book;
@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

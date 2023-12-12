@@ -14,7 +14,6 @@ public  class BackendException extends RuntimeException{
     private static final long serialVersionUID = 2756597416924085674L;
 
     private HttpStatus status = HttpStatus.BAD_REQUEST;
-
     public BackendException(String message) {
         super(message);
     }

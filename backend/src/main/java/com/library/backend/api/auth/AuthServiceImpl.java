@@ -4,7 +4,8 @@ import com.library.backend.api.auth.data.AuthenticationRequest;
 import com.library.backend.api.auth.data.AuthenticationResponse;
 import com.library.backend.api.auth.data.RegisterRequest;
 import com.library.backend.api.auth.interfaces.AuthService;
-import com.library.backend.config.jwt.JwtService;
+import com.library.backend.config.jwt.JwtServiceImpl;
+import com.library.backend.config.jwt.interfaces.JwtService;
 import com.library.backend.entities.user.Role;
 import com.library.backend.entities.user.User;
 import com.library.backend.entities.user.interfaces.UserRepository;
@@ -25,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final JwtService jwtService;
+    private final JwtService jwtServiceImpl;
 
     private final AuthenticationManager authenticationManager;
 
@@ -48,12 +49,13 @@ public class AuthServiceImpl implements AuthService {
 
         log.info("Saved user: {}", savedUser);
 
-        String jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtServiceImpl.generateToken(savedUser);
 
         log.info(JWT_RETURN);
         return  AuthenticationResponse
                 .builder()
                 .token(jwtToken)
+                .isAdmin(savedUser.isAdmin())
                 .build();
     }
 
@@ -67,16 +69,19 @@ public class AuthServiceImpl implements AuthService {
                         request.password()
                 )
         );
+
         log.info("Fetching user with username: {}", request.email());
+
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserNotFoundException(
                         String.format("User with email: %s has not been found", request.email())));
 
-        String jwtToken = jwtService.generateToken(user);
+        String jwtToken = jwtServiceImpl.generateToken(user);
 
         log.info(JWT_RETURN);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .isAdmin(user.isAdmin())
                 .build();
     }
 }

@@ -56,4 +56,12 @@ public class Book {
     public final int hashCode() {
         return this instanceof HibernateProxy hibernateProxy ? hibernateProxy.getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+
+    public void returnBook() {
+        this.availableNumber = this.availableNumber ==  this.totalNumber ? this.totalNumber : this.availableNumber + 1;
+    }
+
+    public void borrowBook() {
+        this.availableNumber = this.availableNumber == 0 ? 0 : this.availableNumber - 1;
+    }
 }

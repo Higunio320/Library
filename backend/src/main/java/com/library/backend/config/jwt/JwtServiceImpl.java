@@ -1,5 +1,6 @@
 package com.library.backend.config.jwt;
 
+import com.library.backend.config.jwt.interfaces.JwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,7 +16,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtService {
+public class JwtServiceImpl implements JwtService {
 
     private static final String SECRET_KEY = "366B656F3773685A436D53754669715468627749483549524761745945624D64";
     private static final long EXPIRATION_TIME = 1000L * 60L * 120L;
