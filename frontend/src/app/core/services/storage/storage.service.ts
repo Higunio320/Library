@@ -22,4 +22,8 @@ export class StorageService {
   saveUser(username: string) {
     localStorage.setItem('username', username);
   }
+
+  getUser() {
+    return localStorage.getItem('username');
+  }
 }

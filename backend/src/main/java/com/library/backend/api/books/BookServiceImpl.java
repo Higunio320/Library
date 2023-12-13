@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -74,9 +75,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Collection<BookResponse> findByTitle(String title) {
-        log.info("Searching for books with name: {}", title);
+        log.info("Searching for books with title: {}", title);
 
         Collection<Book> books = bookRepository.findByTitleContainingIgnoreCase(title);
+
+        log.info("Returning list of: {} books", books.size());
 
         return books.stream()
                 .map(bookMapper::bookToBookResponse)

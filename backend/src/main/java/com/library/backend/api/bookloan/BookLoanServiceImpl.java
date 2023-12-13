@@ -111,6 +111,8 @@ public class BookLoanServiceImpl implements BookLoanService {
 
         log.info("Returning book loan response of: {}", bookLoan);
 
+        bookLoanRepository.delete(bookLoan);
+
         return bookLoanMapper.bookLoanToBookLoanResponse(bookLoan);
     }
 }

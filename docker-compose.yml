@@ -31,6 +31,7 @@ services:
       - mynetwork
     environment:
         DB_URL: jdbc:postgresql://db:5432/library
+        FRONTEND_URL: http://frontend:4200
 
 networks:
   mynetwork:

@@ -5,7 +5,7 @@ import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-fi
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {AuthService} from "../../../../core/services/auth/auth.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,8 @@ import {Router} from "@angular/router";
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -41,7 +42,9 @@ export class LoginComponent {
     const username = this.loginForm.get('username')!.value;
     const password = this.loginForm.get('password')!.value;
 
-    if(!username || !password) return;
+    if(!username || !password) {
+      return;
+    }
 
     this.authService.login(username, password).subscribe(
       response => {

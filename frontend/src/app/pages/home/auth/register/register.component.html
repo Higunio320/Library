@@ -1,1 +1,50 @@
-<p>register works!</p>
+<div class="background">
+  <div class="login-container">
+    <form (ngSubmit)="submitForm()" [formGroup]="registerForm">
+      <div class="login-row">
+        <h1>Library Register</h1>
+      </div>
+      <div class="login-row">
+        <mat-form-field>
+          <mat-label>First name</mat-label>
+          <input formControlName="firstName" matInput placeholder="John" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last name</mat-label>
+          <input formControlName="lastName" matInput placeholder="Doe" required>
+        </mat-form-field>
+      </div>
+      <div class="login-row">
+        <mat-form-field>
+          <mat-label>Enter your email</mat-label>
+          <input formControlName="username" matInput placeholder="user@example.com" required>
+        </mat-form-field>
+      </div>
+      <div class="login-row">
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="login-row">
+        <mat-form-field>
+          <mat-label>Repeat your password</mat-label>
+          <input formControlName="repeatPassword" matInput [type]="hideRepeat ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon color="accent">{{hideRepeat ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="login-row">
+        <button class="login-button" mat-raised-button type="submit" color="primary">Register</button>
+      </div>
+      <div class="register">
+        <p style="color: rgb(128,128,128);">Already have an account?</p>
+        <a style="color:#9c31ff; font-weight: bold;" [routerLink]="['/auth/login']">Log in</a>
+      </div>
+    </form>
+  </div>
+</div>

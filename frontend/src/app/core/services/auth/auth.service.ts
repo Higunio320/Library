@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoginResponse} from "../../data/auth/login-response";
 import {StorageService} from "../storage/storage.service";
 import {tap} from "rxjs";
+import {ApiUrl} from "../../enums/api-url";
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +11,16 @@ import {tap} from "rxjs";
 export class AuthService {
 
   authenticated = false;
-  api_url = 'http://localhost:8080';
 
   constructor(private http: HttpClient,
               private storage: StorageService) {}
 
 
   login(username: string, password: string) {
-    return this.http.post<LoginResponse>(this.api_url + '/api/auth/login', {email: username, password: password}).pipe(
+    return this.http.post<LoginResponse>(ApiUrl.LOGIN , {email: username, password: password}).pipe(
       tap({
         next: (response) => {
-          this.saveToken(response);
+          this.saveToken(response.token);
           this.saveUser(username);
         },
         error: (error) => {
@@ -35,8 +35,8 @@ export class AuthService {
     this.authenticated = false;
   }
 
-  private saveToken(response: LoginResponse) {
-    this.storage.saveToken(response.token);
+  private saveToken(token: string) {
+    this.storage.saveToken(token);
     this.authenticated = true;
   }
 
@@ -52,5 +52,17 @@ export class AuthService {
     this.storage.saveUser(username);
   }
 
+  register(username: string, password: string, firstName: string, lastName: string) {
+    return this.http.post<LoginResponse>(ApiUrl.REGISTER,
+      {email: username, password: password, firstName: firstName, lastName: lastName}).pipe(
+        tap({
+          next: response => {
+            this.saveToken(response.token);
+            this.saveUser(username);
+          },
+          error: error => console.log(error)
+        },
+          ));
+  }
 
 }

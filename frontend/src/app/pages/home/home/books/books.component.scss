@@ -1,0 +1,51 @@
+.table {
+  width: 40em;
+}
+
+
+.books-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.searchBar {
+  display: flex;
+  margin-top: 5em;
+  width: 40em;
+}
+
+.searchBar button {
+  margin-left: 1em;
+}
+
+.movie-table {
+  max-width: 70em;
+  align-items: center;
+}
+
+.mat-column-title {
+  width: 10em;
+}
+
+.mat-column-author {
+  width: 10em;
+}
+
+.mat-column-genre {
+  width: 10em;
+}
+
+.mat-column-description {
+  width: 30em;
+}
+
+.mat-column-availableNumber {
+  width: 10em;
+}
+
+.mat-column-actions {
+  width: auto;
+
+}

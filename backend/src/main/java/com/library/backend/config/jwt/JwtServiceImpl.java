@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@Slf4j
 public class JwtServiceImpl implements JwtService {
 
     private static final String SECRET_KEY = "366B656F3773685A436D53754669715468627749483549524761745945624D64";
@@ -35,6 +37,8 @@ public class JwtServiceImpl implements JwtService {
     }
 
     public final boolean isTokenValid(String token, UserDetails userDetails) {
+        log.info("Validating token for username: {}", userDetails.getUsername());
+
         String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
