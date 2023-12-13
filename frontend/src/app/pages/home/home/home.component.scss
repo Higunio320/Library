@@ -1,0 +1,32 @@
+.example-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.toolbar button {
+  position: absolute;
+  left: 1em;
+}
+
+.toolbar span {
+  font-size: 1.5em;
+  font-family: Comic Sans MS, serif;
+  font-weight: bold;
+}

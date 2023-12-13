@@ -1,0 +1,15 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="example-sidenav" mode="over">
+
+  </mat-drawer>
+
+  <mat-toolbar color="primary" class="toolbar">
+    <button (click)="drawer.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Library</span>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+
+</mat-drawer-container>
