@@ -31,7 +31,18 @@ services:
       - mynetwork
     environment:
         DB_URL: jdbc:postgresql://db:5432/library
-        FRONTEND_URL: http://frontend:4200
+        FRONTEND_URL: http://localhost:4200
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend
 
 networks:
   mynetwork:

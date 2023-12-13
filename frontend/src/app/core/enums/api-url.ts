@@ -1,16 +1,16 @@
+import {environment} from "../../../environments/environment";
+
 export enum ApiUrl {
-  API_URL = 'http://localhost:8080/api',
+  AUTH = '/auth',
+  BOOKS = '/books',
+  BOOK_LOANS = '/bookloans',
 
-  AUTH = API_URL + '/auth',
-  BOOKS = API_URL + '/books',
-  BOOK_LOANS = API_URL + '/bookloans',
+  LOGIN = '/auth/login',
+  REGISTER = '/auth/register',
 
-  LOGIN = AUTH + '/login',
-  REGISTER = AUTH + '/register',
+  BOOKS_SEARCH = '/books/search',
 
-  BOOKS_SEARCH = BOOKS + '/search',
-
-  BOOK_LOANS_ADD = BOOK_LOANS + '/add',
-  BOOK_LOANS_GET_ALL = BOOK_LOANS + '/getAll',
-  BOOK_LOANS_RETURN = BOOK_LOANS + '/return'
-}
+  BOOK_LOANS_ADD = '/bookloans/add',
+  BOOK_LOANS_GET_ALL = '/bookloans/getAll',
+  BOOK_LOANS_RETURN = '/bookloans/return'
+};

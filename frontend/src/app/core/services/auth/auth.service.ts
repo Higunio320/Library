@@ -4,6 +4,7 @@ import {LoginResponse} from "../../data/auth/login-response";
 import {StorageService} from "../storage/storage.service";
 import {tap} from "rxjs";
 import {ApiUrl} from "../../enums/api-url";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
 
 
   login(username: string, password: string) {
-    return this.http.post<LoginResponse>(ApiUrl.LOGIN , {email: username, password: password}).pipe(
+    return this.http.post<LoginResponse>(`${environment.API_URL}${ApiUrl.LOGIN}` , {email: username, password: password}).pipe(
       tap({
         next: (response) => {
           this.saveToken(response.token);
@@ -53,7 +54,7 @@ export class AuthService {
   }
 
   register(username: string, password: string, firstName: string, lastName: string) {
-    return this.http.post<LoginResponse>(ApiUrl.REGISTER,
+    return this.http.post<LoginResponse>(`${environment.API_URL}${ApiUrl.REGISTER}`,
       {email: username, password: password, firstName: firstName, lastName: lastName}).pipe(
         tap({
           next: response => {
