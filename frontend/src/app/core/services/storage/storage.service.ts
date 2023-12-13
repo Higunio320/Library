@@ -18,4 +18,8 @@ export class StorageService {
   deleteToken() {
     localStorage.removeItem('token');
   }
+
+  saveUser(username: string) {
+    localStorage.setItem('username', username);
+  }
 }

@@ -5,6 +5,7 @@ import {MatFormFieldControl, MatFormFieldModule} from "@angular/material/form-fi
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {AuthService} from "../../../../core/services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
 
   submitForm() {
@@ -41,7 +43,11 @@ export class LoginComponent {
 
     if(!username || !password) return;
 
-    this.authService.login(username, password);
+    this.authService.login(username, password).subscribe(
+      response => {
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
 }

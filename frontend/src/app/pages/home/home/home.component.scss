@@ -5,14 +5,22 @@
 
 .example-sidenav-content {
   display: flex;
-  height: 100%;
-  align-items: center;
+  height: auto;
+  margin-top: 2em;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.example-sidenav {
-  padding: 20px;
+.example-sidenav-content button {
+  margin: 1em;
 }
+
+.sidenav {
+  width: 15em;
+}
+
+
 
 .toolbar {
   display: flex;
@@ -20,10 +28,16 @@
   align-content: center;
 }
 
-.toolbar button {
+.menu-button {
   position: absolute;
   left: 1em;
 }
+
+.logout-button {
+  position: absolute;
+  right: 1em;
+}
+
 
 .toolbar span {
   font-size: 1.5em;
