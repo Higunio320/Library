@@ -9,6 +9,8 @@ import com.library.backend.config.jwt.interfaces.JwtService;
 import com.library.backend.entities.user.Role;
 import com.library.backend.entities.user.User;
 import com.library.backend.entities.user.interfaces.UserRepository;
+import com.library.backend.utils.exceptions.auth.NoAccessException;
+import com.library.backend.utils.exceptions.auth.UserAlreadyExistsException;
 import com.library.backend.utils.exceptions.users.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +38,14 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public final AuthenticationResponse register(RegisterRequest request) {
-        log.info("Creating user for request: {}", request);
+        log.info("Checking if user does not exist");
+        Optional<User> findUser = userRepository.findByEmail(request.email());
+
+        if(findUser.isPresent()) {
+            throw new UserAlreadyExistsException(String.format("User with email: %s already exists", request.email()));
+        }
+
+        log.info("Creating user for username: {}", request.email());
 
         User user = User
                 .builder()
@@ -61,7 +72,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public final AuthenticationResponse authenticate(AuthenticationRequest request) {
-        log.info("Authenticating request: {}", request);
+        log.info("Authenticating request for username: {}", request.email());
 
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

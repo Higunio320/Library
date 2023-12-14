@@ -1,13 +1,12 @@
 package com.library.backend.api.bookloan;
 
-import com.library.backend.api.bookloan.data.BookLoanRequest;
 import com.library.backend.api.bookloan.data.BookLoanResponse;
 import com.library.backend.api.bookloan.interfaces.BookLoanService;
 import com.library.backend.entities.book.Book;
 import com.library.backend.entities.book.interfaces.BookRepository;
 import com.library.backend.entities.bookloan.BookLoan;
-import com.library.backend.entities.bookloan.interaces.BookLoanMapper;
-import com.library.backend.entities.bookloan.interaces.BookLoanRepository;
+import com.library.backend.entities.bookloan.interfaces.BookLoanMapper;
+import com.library.backend.entities.bookloan.interfaces.BookLoanRepository;
 import com.library.backend.entities.user.User;
 import com.library.backend.entities.user.interfaces.UserRepository;
 import com.library.backend.utils.exceptions.auth.NoAccessException;

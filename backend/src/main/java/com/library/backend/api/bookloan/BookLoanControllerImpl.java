@@ -30,6 +30,7 @@ public class BookLoanControllerImpl implements BookLoanController {
     }
 
     @Override
+    @GetMapping("/getAll")
     public List<BookLoanResponse> getLoansForGivenUser(@RequestParam String username,
                                                        @AuthenticationPrincipal User user) {
 
@@ -37,6 +38,7 @@ public class BookLoanControllerImpl implements BookLoanController {
     }
 
     @Override
+    @PostMapping("/return")
     public BookLoanResponse returnBook(@RequestParam long loanId,
                                        @AuthenticationPrincipal User user) {
 

@@ -1,4 +1,4 @@
-package com.library.backend.entities.bookloan.interaces;
+package com.library.backend.entities.bookloan.interfaces;
 
 import com.library.backend.entities.bookloan.BookLoan;
 import org.springframework.data.jpa.repository.JpaRepository;
