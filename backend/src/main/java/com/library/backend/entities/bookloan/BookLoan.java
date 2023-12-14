@@ -34,7 +34,7 @@ public class BookLoan {
     @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private Book book;
 
     private LocalDate loanDate;

@@ -1,0 +1,23 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #drawer class="sidenav" mode="over">
+    <div class="example-sidenav-content">
+      <h1>Menu</h1>
+      <button [routerLink]="['/home']" (click)="drawer.toggle()" color="primary" mat-fab>
+        <mat-icon>home</mat-icon>
+      </button>
+      <button color="primary" mat-raised-button (click)="drawer.toggle(); goToBooks()">Books</button>
+      <button color="primary" mat-raised-button (click)="drawer.toggle(); goToLoans()">Loans list</button>
+    </div>
+  </mat-drawer>
+
+  <mat-toolbar color="primary" class="toolbar">
+    <button class="menu-button" (click)="drawer.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Library</span>
+    <button class="logout-button" color="accent" (click)="logout()" mat-raised-button>Logout</button>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+
+</mat-drawer-container>

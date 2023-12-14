@@ -1,6 +1,5 @@
 package com.library.backend.api.bookloan;
 
-import com.library.backend.api.bookloan.data.BookLoanRequest;
 import com.library.backend.api.bookloan.data.BookLoanResponse;
 import com.library.backend.api.bookloan.interfaces.BookLoanController;
 import com.library.backend.api.bookloan.interfaces.BookLoanService;
